@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f9f9f9;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 30px;
+    font-size: 36px;
+    color: #e64e3e; /* Portocaliu aprins */
+}
+
+p {
+    font-size: 18px;
+    color: #555; /* Gri închis */
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 12px 24px;
+    font-size: 20px;
+    background-color: #e64e3e; /* Portocaliu aprins */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #c6392e; /* Nuanță mai întunecată de portocaliu la hover */
+}
