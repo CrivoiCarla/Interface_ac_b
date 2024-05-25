@@ -3,16 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rezultat Procesare Voce</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Voice Processing Result</title>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> -->
+    <link rel="stylesheet" href="../static/styles_result.css">
 </head>
 <body>
-    <h1>Rezultat Procesare Voce</h1>
-    <audio controls>
-        <source src="{{ url_for('static', filename='processed_audio.wav') }}" type="audio/wav">
-        Your browser does not support the audio element.
-    </audio>
-    <br>
-    <a href="{{ url_for('index') }}">Înapoi la Pagina Principală</a>
+    <div class="container">
+        <header>
+            <!-- <img src="../static/logo.png" alt="Company Logo" class="logo"> -->
+            <h1>Voice Processing Result</h1>
+        </header>
+
+        <div class="audio-container">
+            <audio controls>
+                <source src="../static/processed_audio.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <br>
+        <div class="bottom">
+            <form action="../templates/index.html" method="get">
+                <button class="bottom-button" type="submit">Back</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

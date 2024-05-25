@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Speech Recognition Control</title>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> -->
+    <link rel="stylesheet" href="../static/styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js" integrity="sha512-WyVI1N+3PUrbvx9dthJjnv+eLcZOAFD/LjRSXcwRzRL0DufUBZavJnFfn2EGIbMlHZhRd99f6h/VK93Q5ZjovQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript">
         var socket = io.connect('http://' + document.domain + ':' + location.port);
@@ -49,13 +51,30 @@
     </script>
 </head>
 <body>
-    <h1>Speech Recognition Control</h1>
-    <form onsubmit="return startSpeechRecognition()">
-        <button type="submit">Start Speech Recognition</button>
-    </form>
-    <form onsubmit="return stopSpeechRecognition()">
-        <button type="submit">Stop Speech Recognition</button>
-    </form>
-    <div id="recognized-text"></div>
+    <div class="container">
+        <header>
+            <h1>ACCENT BRIDGE <p> Real time accent correction </p> </h1>
+        
+        </header>
+        <form onsubmit="return startSpeechRecognition()">
+            <button type="submit">Start Speech Recognition</button>
+        </form>
+        <form onsubmit="return stopSpeechRecognition()">
+            <button type="submit">Stop Speech Recognition</button>
+        </form>
+
+        <div id="recognized-text">
+            acest text va trebui scos. este doar de testare fggggggyuuuuuufffffffffffffff ffffffffffffffffffff fffffffffffffffffffffffffffffffffffffgggggggffffffffff ffffffffffffttttttt tttttttttttttttttttttttttttttttttttt tttttttfjyfkuyffff
+            hgjdsghjhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh uhgweeuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu hggggggggggggafiu hvaihbvhaiuh
+        
+        </div>
+
+        <div class="bottom">
+            <form action="../templates/result.html" method="get">
+                <button class="bottom-button" type="submit">Result</button>
+            </form>
+        </div>
+    </div>
+    
 </body>
 </html>
