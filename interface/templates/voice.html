@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Processing Result</title>
+    <link rel="stylesheet" href="../static/styles_voice.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Choose the voice</h1>
+        </header>
+        <div class="voice-selection">
+            <div class="voice-option">
+                <img src="../static/female.png" alt="Female Voice" class="voice-photo">
+                <button class="choose-button" onclick="selectVoice('Female')">Female</button>
+            </div>
+            <div class="voice-option">
+                <img src="../static/male.png" alt="Male Voice" class="voice-photo">
+                <button class="choose-button" onclick="selectVoice('Male')">Male</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectVoice(voice) {
+            fetch('/select_voice', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'voice=' + encodeURIComponent(voice),
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Voice selected:', voice);
+                } else {
+                    console.error('Failed to select voice');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>

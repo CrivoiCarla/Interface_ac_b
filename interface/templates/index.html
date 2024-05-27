@@ -48,13 +48,23 @@
             });
             return false; // Prevent form submission
         }
+
+        function updateRecognizedText() {
+            fetch('/get_text')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('recognized-text').innerText = data.text;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        setInterval(updateRecognizedText, 2000); // Update every 2 seconds
     </script>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>ACCENT BRIDGE <p> Real time accent correction </p> </h1>
-        
         </header>
         <form onsubmit="return startSpeechRecognition()">
             <button type="submit">Start Speech Recognition</button>
@@ -72,6 +82,5 @@
 <!--            </form>-->
 <!--        </div>-->
     </div>
-    
 </body>
 </html>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from flask_socketio import SocketIO, emit
 import threading
 import time
@@ -44,6 +44,22 @@ def stop():
         file.write("stop")
     return "STOP"
 
+
+@app.route('/select_voice', methods=['POST'])
+def select_voice():
+    voice = request.form['voice']
+    with open('selected_voice.txt', 'w') as file:
+        file.write(voice)
+    return 'Voice selected', 200
+
+
+@app.route('/get_text', methods=['GET'])
+def get_text():
+    with open('recognized_text.txt', 'r') as file:
+        text = file.read()
+    return jsonify({"text": text})
+
+
 def emit_recognized_text(text):
     socketio.emit('recognized_text', {'text': text})
 
@@ -52,3 +68,5 @@ if __name__ == '__main__':
     speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region)
     speech_recognition_thread = False
     socketio.run(app, debug=True , allow_unsafe_werkzeug=True)
+
+
