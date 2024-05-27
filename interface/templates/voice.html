@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voice Processing Result</title>
     <link rel="stylesheet" href="../static/styles_voice.css">
+
 </head>
 <body>
     <div class="container">
@@ -14,14 +15,16 @@
         <div class="voice-selection">
             <div class="voice-option">
                 <img src="../static/female.png" alt="Female Voice" class="voice-photo">
-                <button class="choose-button" onclick="selectVoice('Female')">Female</button>
+                <button class="choose-button" onclick="selectVoice('Female')" >Female</button>
             </div>
             <div class="voice-option">
                 <img src="../static/male.png" alt="Male Voice" class="voice-photo">
-                <button class="choose-button" onclick="selectVoice('Male')">Male</button>
+                <button class="choose-button" onclick="selectVoice('Male')" >Male</button>
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
     <script>
         function selectVoice(voice) {
@@ -44,5 +47,17 @@
             });
         }
     </script>
+
+<script>
+
+    $(document).ready(function() {
+        // Atașează un handler de clic la toate butoanele din document
+        $('button').click(function() {
+            // Redirecționează utilizatorul către ruta /voice
+            window.location.href = '/index';
+        });
+    });
+</script>
+
 </body>
 </html>

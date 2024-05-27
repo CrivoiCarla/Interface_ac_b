@@ -9,11 +9,14 @@ import azure.cognitiveservices.speech as speechsdk
 from TTS import TextToSpeech
 from STT import SpeechToText
 
+
+speech_config = ""
 app = Flask(__name__)
 socketio = SocketIO(app)
 
 
-@app.route('/')
+
+@app.route('/index')
 def index():
     return render_template('index.html')
 
@@ -27,7 +30,21 @@ def handle_disconnect():
 
 @app.route('/start', methods=['POST'])
 def start():
-    global speech_recognition_thread
+    global speech_recognition_thread , speech_config
+    with open('recognized_text.txt', 'w') as file:
+        file.write("")
+    with open('selected_voice.txt', 'r') as file:
+        text = file.read()
+        if "Male" in text:
+            voice = "en-US-BrianMultilingualNeural"
+        else:
+            voice = "en-US-AvaMultilingualNeural"
+
+        print(text, voice)
+    speech_config.set_property(
+        property_id=speechsdk.PropertyId.SpeechServiceConnection_SynthVoice,
+        value=voice)
+
     speech_recognition_thread = True
     with open('stop.txt', 'w') as file:
         file.write("")
@@ -59,9 +76,13 @@ def get_text():
         text = file.read()
     return jsonify({"text": text})
 
+@app.route('/')
+def voice():
+    return render_template('voice.html')
 
 def emit_recognized_text(text):
     socketio.emit('recognized_text', {'text': text})
+
 
 if __name__ == '__main__':
     speech_key, service_region = "16200612f681448ca6cd8870d82ea638", "eastus"

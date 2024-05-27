@@ -13,7 +13,7 @@ class AudioManager:
         self.stream.write(audio_data)
 
 # increase sample rate to increase voice speed
-audio_manager = AudioManager(sample_rate=18000, channels=1, format=pyaudio.paInt16)
+audio_manager = AudioManager(sample_rate=16000, channels=1, format=pyaudio.paInt16)
 
 class PushAudioOutputStreamSampleCallback(speechsdk.audio.PushAudioOutputStreamCallback):
     """
@@ -50,6 +50,8 @@ class TextToSpeech:
 
     def speak_text_async(self, evt: speechsdk.SpeechRecognitionEventArgs):
         print('RECOGNIZED: {}'.format(evt.result.text))
+        with open('recognized_text.txt', 'a+') as file:
+            file.write(f"RECOGNIZED: {evt.result.text}\n")
         self.speech_synthesizer.speak_text_async(evt.result.text)
         # self.speech_synthesizer.speak_text(evt.result.text)
         # self.speech_synthesizer.start_speaking_text(evt.result.text)
