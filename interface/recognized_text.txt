@@ -1,1 +1,4 @@
-RECOGNIZED: 1234.
+RECOGNIZED: Hey, Cortana.
+RECOGNIZED: My name is.
+RECOGNIZED: 
+RECOGNIZED: Nice. Amazing product, guys. Amazing.

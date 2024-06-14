@@ -16,7 +16,7 @@ socketio = SocketIO(app)
 
 
 
-@app.route('/index')
+@app.route('/')
 def index():
     return render_template('index.html')
 
@@ -76,7 +76,7 @@ def get_text():
         text = file.read()
     return jsonify({"text": text})
 
-@app.route('/')
+@app.route('/voice')
 def voice():
     return render_template('voice.html')
 
